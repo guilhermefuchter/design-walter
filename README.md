@@ -1,12 +1,10 @@
 # design-walter
 
-
-DESIGN E ARQUITETURA DE SOFTWARE I
 📍 Abstração
-Abstração é o ato de representar elementos do mundo real dentro do software. Em Java, por exemplo, é comum utilizar classes no pacote entity para modelar entidades que correspondem aos dados existentes no banco de dados.
+A abstração consiste em representar elementos do mundo real dentro do software. Em Java, por exemplo, é comum utilizar classes no pacote entity para modelar entidades que refletem os dados armazenados no banco de dados.
 
 📍 Princípios de Projeto de Código
-São boas práticas que servem para guiar a forma como desenvolvemos software. A ideia é deixar o sistema mais fácil de entender, manter e evoluir, usando conceitos como abstração, modularização, baixo acoplamento e alta coesão.
+Boas práticas são diretrizes que orientam o desenvolvimento de software. O objetivo é tornar o sistema mais simples de compreender, manter e evoluir, aplicando conceitos como abstração, modularização, baixo acoplamento e alta coesão.
 
 Organização por Camadas:
 
@@ -16,10 +14,10 @@ Repository = con bd
 Service = Lógica
 Config = Centraliza as configurações das aplicações
 📍 Padronização de Código
-Tem a ver com seguir convenções de escrita e formatação para que todos programem de forma consistente. Isso ajuda na leitura e manutenção do projeto. Um exemplo simples é a convenção de nomes em Java, onde as classes usam CamelCase e as variáveis usam camelCase.
+
 
 📍 Ocultamento de Informação
-Também chamado de encapsulamento, significa esconder detalhes internos de uma classe e expor apenas o que for realmente necessário. Isso evita que outras partes do sistema fiquem dependentes da implementação interna. Normalmente, fazemos isso declarando atributos como private e acessando-os por meio de métodos get e set.
+Também conhecido como encapsulamento, consiste em ocultar os detalhes internos de uma classe e disponibilizar apenas o que for essencial. Dessa forma, evita-se que outras partes do sistema dependam diretamente da implementação interna. Geralmente, isso é feito declarando os atributos como private e permitindo o acesso por meio de métodos get e set.
 
 📍 Coesão
 Está relacionada ao quanto os elementos de uma classe ou módulo trabalham em torno de uma única responsabilidade. Quanto maior a coesão, mais clara e organizada é a estrutura do código, o que facilita sua compreensão.
@@ -27,19 +25,36 @@ Está relacionada ao quanto os elementos de uma classe ou módulo trabalham em t
 📍 Acoplamento
 Mede o nível de dependência entre classes ou módulos. O ideal é manter um baixo acoplamento, para que cada parte do sistema funcione de forma independente, o que facilita tanto a manutenção quanto a possibilidade de reaproveitar o código em outros contextos.
 
-Classe anêmica
+📍Classe Anêmica
+É uma classe que contém apenas atributos, seus respectivos getters e setters, mas não possui comportamento (métodos com regras de negócio).
+🔹 Exemplo: uma classe Livro que só tem titulo, autor e preço, mas não possui métodos como aplicarDesconto() ou calcularImposto().
 
-Classe que so tem o nome, os atributos e os getters e setters.
 Diagrama UML
 
-Flecha Vazia Contínua: Herança Ex: "Cachorro é um Animal".
-Flecha Vazia Pontilhada: Interface Ex: "Professor ensina Aluno".
-Flecha Preenchida Contínua: Associação "Carro implementa Veículo".
-Débito Técnico
+Flecha Vazia Contínua (Herança): Representa especialização. Exemplo: “Gato é um Mamífero”.
 
-Débito técnico são partes do código que foram mal implementadas e que, futuramente, podem causar problemas no sistema.
+Flecha Vazia Pontilhada (Interface): Representa implementação de contrato. Exemplo: “PagamentoOnline implementa MétodoPagamento”.
+
+Flecha Preenchida Contínua (Associação): Representa relação de uso. Exemplo: “Motor faz parte de Carro”.
+
+Débito Técnico
+Refere-se a escolhas de implementação rápidas ou inadequadas que facilitam no curto prazo, mas podem gerar falhas ou dificultar a manutenção no futuro.
+🔹 Exemplo: duplicar trechos de código em vários lugares em vez de criar um método reutilizável.
+
 SOLID
-Princípal objetivo do SOLID é nos fazer utilizar o PROGRAMAÇÃO ORIENTADA A OBJETOS da forma correta, estruturando o código de forma coesa, desacoplada e flexíve.
+O objetivo dos princípios SOLID é aplicar corretamente a Programação Orientada a Objetos, garantindo código mais coeso, desacoplado e flexível.
+
+🔹 Exemplo:
+
+S (Single Responsibility): Uma classe RelatorioPDF deve apenas gerar relatórios, não salvar em banco.
+
+O (Open/Closed): Um método de cálculo de frete deve aceitar novas regras sem modificar o código existente.
+
+L (Liskov Substitution): Uma subclasse Quadrado deve poder substituir Retangulo sem quebrar o sistema.
+
+I (Interface Segregation): Uma interface Veiculo não deve obrigar bicicleta a implementar abastecer().
+
+D (Dependency Inversion): Em vez de a classe Loja depender de CartaoCredito, ela deve depender de uma abstração MetodoPagamento.
 
 📍 S - Single Responsibility Principle
 O Princípio da Responsabilidade Única (Single Responsibility Principle) diz que uma classe deve ter apenas um motivo para mudar, ou seja, deve ser responsável por apenas uma coisa dentro do sistema. Quando uma classe assume várias responsabilidades, ela fica mais difícil de entender, testar e manter. Seguindo esse princípio, cada classe foca em uma tarefa específica, deixando o código mais organizado e facilitando futuras alterações.
@@ -292,13 +307,10 @@ public class Main {
     }
 }
 📍 Conclusão
-Padrões de Projeto são essenciais para criar sistemas flexíveis e reutilizáveis.
-Eles ajudam tanto no desenvolvimento próprio quanto na compreensão de sistemas de terceiros.
-Os principais grupos são: Criacionais, Estruturais e Comportamentais.
-Exemplos práticos: Factory, Singleton, Observer.
-📍 Expectativas de um arquiteto
-No livro Fundamentos da Arquitetura de Software – Introdução, os autores destacam que as expectativas em torno do arquiteto de software vão além da competência técnica. Esse profissional deve ser capaz de tomar decisões estruturais importantes, promover a comunicação entre equipes de desenvolvimento, operação e negócios, além de garantir que o sistema atenda tanto às funcionalidades esperadas quanto aos requisitos de qualidade, como desempenho, escalabilidade e segurança.
+Padrões de Projeto são fundamentais para desenvolver sistemas mais flexíveis e reutilizáveis. Eles auxiliam tanto no próprio processo de desenvolvimento quanto na compreensão de sistemas criados por terceiros. Os principais grupos são Criacionais, Estruturais e Comportamentais, com exemplos práticos como Factory, Singleton e Observer.
 
+📍 Expectativas de um arquiteto
+No livro Fundamentos da Arquitetura de Software – Introdução, os autores ressaltam que as responsabilidades de um arquiteto de software vão além da habilidade técnica. Esse profissional precisa tomar decisões estruturais relevantes, facilitar a comunicação entre equipes de desenvolvimento, operação e negócios, e assegurar que o sistema atenda não apenas às funcionalidades previstas, mas também a requisitos de qualidade como desempenho, escalabilidade e segurança.
 📍 Decisões de arquitetura
 As decisões de arquitetura são consideradas críticas, pois moldam a estrutura do sistema e impactam diretamente sua capacidade de evolução. Essas escolhas envolvem estilos arquiteturais, padrões, frameworks, tecnologias e trade-offs, que devem ser cuidadosamente avaliados, já que se tratam de definições difíceis de modificar após implementadas. O arquiteto é responsável por equilibrar necessidades técnicas e estratégicas ao tomar tais decisões.
 
@@ -332,4 +344,8 @@ Rrquitetura de software é responsável pelas decisões estruturais mais importa
 A formação de um arquiteto de software deve seguir o conceito do profissional em “T”. A barra horizontal do T representa o conhecimento amplo, que envolve transitar por diversas áreas como linguagens de programação, bancos de dados, nuvem, DevOps, segurança e redes, possibilitando compreender o sistema como um todo e dialogar com diferentes equipes. Já a barra vertical do T simboliza o conhecimento profundo, ou seja, a especialização em algumas áreas específicas, como microsserviços, performance ou segurança, permitindo que o arquiteto seja referência técnica nesses pontos críticos. Essa combinação entre amplitude e profundidade torna o arquiteto mais completo e preparado para tomar decisões estratégicas.
 
 📍 Trade-off
-trade-off é a avaliação das consequências ao escolher uma opção em detrimento de outra dentro da arquitetura de software. Toda decisão arquitetural implica ganhos e perdas, e o papel do arquiteto é analisar cuidadosamente essas trocas para equilibrar prioridades como desempenho, segurança, escalabilidade, custo, manutenibilidade e tempo de entrega. Não existe solução perfeita; cada escolha traz benefícios em certos aspectos, mas também limitações em outros. Por exemplo, optar por uma arquitetura de microsserviços pode aumentar a escalabilidade e a flexibilidade, mas, ao mesmo tempo, elevar a complexidade operacional e os custos de monitoramento. O processo de análise de trade-offs exige considerar o contexto do negócio, os requisitos de qualidade e as restrições existentes, avaliando impactos de curto e longo prazo. Dessa forma, um arquiteto eficiente não busca eliminar os trade-offs, mas sim tomar decisões conscientes e justificadas, comunicando claramente às partes interessadas os motivos da escolha e os compromissos envolvidos.
+Trade-off é o processo de avaliar as consequências de escolher uma alternativa em detrimento de outra dentro da arquitetura de software. Cada decisão arquitetural envolve ganhos e perdas, e cabe ao arquiteto analisar cuidadosamente essas trocas para equilibrar prioridades como desempenho, segurança, escalabilidade, custo, manutenibilidade e prazo de entrega.
+
+Não existe solução perfeita: toda escolha traz benefícios em alguns aspectos, mas também impõe limitações em outros. Por exemplo, adotar uma arquitetura de microsserviços pode oferecer maior escalabilidade e flexibilidade, porém aumenta a complexidade operacional e os custos de monitoramento.
+
+A análise de trade-offs deve considerar o contexto do negócio, os requisitos de qualidade e as restrições existentes, levando em conta impactos de curto e longo prazo. Assim, um arquiteto eficiente não busca eliminar os trade-offs, mas sim tomar decisões conscientes e justificadas, comunicando de forma clara às partes interessadas os motivos das escolhas e os compromissos envolvidos.
